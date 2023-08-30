@@ -3,8 +3,8 @@
 {% block product %}
     <div class="product">
          {% for productos in product %}
-             <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
+             <div class="card" style="width: 20%;">
+  <img src="/media/{{ productos.image }}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{ productos.title }}</h5>
     <p class="card-text">Name: {{ productos.compound }}</p>
@@ -12,7 +12,11 @@
           <p>{{ categories.kind_food }}</p>
           <p>{{ categories.count }}</p>
        {% endfor %}
-    <a href="#" class="btn btn-primary">More product</a>
+      {% for review in productos.connection_review.all %}
+           <p>Nickname: {{ review.nickname }}</p>
+           <p>Comment: {{ review.comment }}</p>
+      {% endfor %}
+    <a href="/products/{{ productos.id }}/" class="btn btn-primary">More product</a>
   </div>
 </div>
          {% endfor %}
