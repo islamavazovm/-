@@ -1,3 +1,4 @@
+
 {% extends 'layouts/index.html' %}
 
 {% block product %}
@@ -28,16 +29,26 @@
 {% endblock %}
 
 {% block review%}
+
+     <form action="/product/<int:id>/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Create review">
+    </form>
+
+
      <div class="product_review_block">
         {% for review in product.connection_review.all %}
          <div class="review">
             <h1>Nickname: {{ review.nickname }}</h1>
             <h2>Country: {{review.country}}</h2>
             <h3>Comment: {{ review.comment }}</h3>
-            <h4>Mark: {{ review.grade }}</h4>
+            <h4>Mark:{{ review.grade }}</h4>
             <h5>{{ review.create_data }}</h5>
             <h6>{{ review.modification_data }}</h6>
         </div>
         {% endfor %}
     </div>
+
 {% endblock %}
