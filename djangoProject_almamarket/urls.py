@@ -18,24 +18,29 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 
-from posts import views
+from posts import views as post_views
+from users import views as user_views
 from djangoProject_almamarket import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', views.main_view),
-    path('posts/', views.posts_view),
-    path('product/', views.product_view),
-    path('category/', views.category_view),
-    path('products/<int:id>/', views.product_detail_view),
-    path('posts/<int:id>/', views.post_detail_view),
-    path('reviews/', views.review_view),
+    path('', post_views.main_view),
+    path('posts/', post_views.posts_view),
+    path('product/', post_views.product_view),
+    path('category/', post_views.category_view),
+    path('products/<int:id>/', post_views.product_detail_view),
+    path('posts/<int:id>/', post_views.post_detail_view),
+    path('reviews/', post_views.review_view),
 
-    path('posts/create/', views.posts_create_view),
-    path('product/create/', views.product_create_view),
-    path('category/create/', views.category_create_view),
-    path('reviews/create/', views.review_create_view)
+    path('posts/create/', post_views.posts_create_view),
+    path('product/create/', post_views.product_create_view),
+    path('category/create/', post_views.category_create_view),
+    path('reviews/create/', post_views.review_create_view),
+
+    path('users/register/', user_views.register_view),
+    path('users/auth/', user_views.auth_view),
+    path('users/logout/', user_views.logout_view),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -1,13 +1,43 @@
 {% extends 'layouts/index.html' %}
 
 {% block product %}
-    <form action="/product/create/" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
+    <style type="text/css">
+        .form_block {
 
-            <p>Create product</p>
-            <input type="text" name="test_field">
 
-            <input type="submit" value="Create">
-    </form>
+            background: url(https://scng-dash.digitalfirstmedia.com/wp-content/uploads/2021/02/MAGGIORI_MARK_Hold-On-to-What-is-Good_50x50.jpg) no-repeat;
+            -webkit-background-size: 100%;
+            -o-background-size: 100%;
+            -moz-background-size: 100%;
+            {#-ms-background-size: 100%;#}
+            {#-khtml-background-size: 100%;#}
+            background-size: 100%;
+
+            {#background-color: darkgray;#}
+            {#background-size: 100%;#}
+
+        }
+
+    </style>
+    <div class="form_block" style="width: 100%;background-color: black ;background-size: 100%">
+        <form action="/product/create/" method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
+                {% if user.is_anonymous %}
+                    <p style="font-size: 100px; "> You can't create a product</p>
+                    <h1>But you can Sign Up or Login if you have a account </h1>
+                    <h2 style="">.</h2>
+
+                {% else %}
+
+                {{ form.as_p }}
+                    <p>Create product</p>
+                <input type="text" name="test_field">
+
+                <input type="submit" value="Create">
+
+                {% endif %}
+
+
+        </form>
+    </div>
 {% endblock %}
