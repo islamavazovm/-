@@ -1,8 +1,8 @@
 {% load static %}
 
-<!doctype html>
+<!doctype html >
 <html lang="en">
-<head>
+<head style="background-color: antiquewhite">
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -15,26 +15,26 @@
 
 
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-        <img src="{% static 'django.jpeg' %}" alt="" style="width: 220px; ">
+<body style="background-color: aliceblue">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <div class="container-fluid" style="background-color: darkgray">
+    <a class="navbar-brand" href="#" >
+        <img src="{% static 'django.jpeg' %}" alt="" style="width: 220px;">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" >
+      <span class="navbar-toggler-icon" ></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="background-color: darkgray">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <a class="nav-link" href="/posts/">Posts</a>
-        <a class="nav-link" href="/product/">Product</a>
+        <a class="nav-link active" aria-current="page" href="#" style="background-color: darkgray">Home</a>
+        <a class="nav-link" href="/posts/" style="background-color: darkgray">Posts</a>
+        <a class="nav-link" href="/product/" style="background-color: darkgray">Product</a>
           {% if user.is_anonymous %}
-              <a class="nav-link" href="/users/auth/">Login</a>
-              <a class="nav-link" href="/users/register/">Sign Up</a>
+              <a class="nav-link" href="/users/auth/" style="background-color: darkgray">Login</a>
+              <a class="nav-link" href="/users/register/" style="background-color: darkgray">Sign Up</a>
           {% else %}
-              <a class="nav-link" href="/product/create/">Create product</a>
-              <a class="nav-link" href="/users/logout/">Logout</a>
+              <a class="nav-link" href="/product/create/" style="background-color: darkgray ">Create product</a>
+              <a class="nav-link" href="/users/logout/" style="background-color: darkgray">Logout</a>
 
           {% endif %}
       </div>

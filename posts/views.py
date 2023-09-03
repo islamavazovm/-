@@ -1,10 +1,10 @@
-import datetime
-import re
+from django.db.models import Q
 
 from django.shortcuts import HttpResponse, render, redirect
 from posts.models import Post, Product, Category, Review
 from posts.forms import PostCreateForm , ProductCreateForm, ReviewCreateForm, CategoryCreateForm
 
+from posts.constants import PAGINATION_LIMIT
 
 
 def main_view(request):
@@ -23,10 +23,27 @@ def posts_view(request):
 
 def product_view(request):
     if request.method == 'GET':
+        search = request.GET.get('search')
+        page = int(request.GET.get('page',1))
         product = Product.objects.all()
+        print(page)
+
+        max_page = product.__len__() / PAGINATION_LIMIT
+
+        if round(max_page) < max_page:
+            max_page = round(max_page) + 1
+        else:
+            max_page = round(max_page)
+
+        if search:
+            product = product.filter(Q(title__icontains=search) | Q(compound__icontains=search) )
+
+        product = product[PAGINATION_LIMIT * (page-1): PAGINATION_LIMIT * page]
 
         context_product = {
-            'product' : product
+            'product' : product,
+            'user': request.user,
+            'pages': range(1, max_page+1)
         }
         return render(request, 'product/product.html', context=context_product)
 
